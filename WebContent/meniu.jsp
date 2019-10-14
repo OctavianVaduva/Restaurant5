@@ -135,7 +135,7 @@
  					<td><% if(produs.getStoc() > 10) {%>
 							<button onclick='document.getElementById("productId").value="<%=produs.getIdProdus()%>"; form.submit();'>Adauga</button>
 							<%} else if(produs.getStoc() > 0) {%>
-							 Intreaba osparatul <%} else { %> 
+							 <font color="red"><b><i>Intreaba osparatul</i></b></font> <br/> <button onclick='document.getElementById("productId").value="<%=produs.getIdProdus()%>"; form.submit();'>Adauga</button><%} else { %> 
 							 <font color="red">Produsul nu este disponbil!</font> <%}%>
 					</td>
 				</tr>
@@ -158,7 +158,7 @@
 					<td> <% if(%>${produse.getStoc()}<% &gt; %>${produse.getNivelAlerta()})<% {%>
 							<input type="button" value="adauga">
 							<%} else if(%>${produse.getStoc()} <% > 0) {%>
-							 Intreaba osparatul <%} else { %> 
+							 Intreaba osparatul<br/> <input type="button" value="adauga"> <%} else { %> 
 							 <font color="red">Produsul nu este disponbil!</font> <%}%> </td>
 					
 					<td><input type="button" value="adauga"/></td>		 
