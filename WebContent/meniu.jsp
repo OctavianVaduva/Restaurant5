@@ -130,9 +130,9 @@
 					<td style="color:red" align="left"><b><i><%=produs.getIdProdus()%></i> - <%=produs.getNumeProdus()%></b></td>
 					<td><%=produs.getPretUnitar()%></td>
 					<td><img border="3" src="imagini/meniu.jpg" width="120" height="80"></td>
-					<td><input type="number" name="cant<%=produs.getIdProdus()%>" id="cant<%=produs.getIdProdus()%>" min="1"></td>
+					<td><input type="number" name="cant<%=produs.getIdProdus()%>" id="cant<%=produs.getIdProdus()%>" min="1" max="<%=produs.getStoc()%>"></td>
 
- 					<td><% if(produs.getStoc() > 10) {%>
+ 					<td><% if(produs.getStoc() > produs.getNivelAlerta()) {%>
 							<button onclick='document.getElementById("productId").value="<%=produs.getIdProdus()%>"; form.submit();'>Adauga</button>
 							<%} else if(produs.getStoc() > 0) {%>
 							 <font color="red"><b><i>Intreaba osparatul</i></b></font> <br/> <button onclick='document.getElementById("productId").value="<%=produs.getIdProdus()%>"; form.submit();'>Adauga</button><%} else { %> 
