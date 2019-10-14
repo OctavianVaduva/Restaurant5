@@ -145,32 +145,9 @@
 				
 				
 				<%} %>
-			<%-- <c:forEach var="produse" items="${produse}"> 
-			
-				<tr align="center">
-					<td rowspan="2">${produse.getIdCategorie()}</td>
-					<td style="color:red" align="left"><b><i>${produse.getIdProdus()}</i>
-									 - ${produse.getNumeProdus()}</b></td>
-					<!--  <td>${produse.getDescriereProdus()}</td> -->
-					<td>${produse.getPretUnitar()}</td>
-					<td><img border="3" src="imagini/meniu.jpg" width="120" height="80"></td>
-					<td><input type="number" value=0 ></td>
-					<td> <% if(%>${produse.getStoc()}<% &gt; %>${produse.getNivelAlerta()})<% {%>
-							<input type="button" value="adauga">
-							<%} else if(%>${produse.getStoc()} <% > 0) {%>
-							 Intreaba osparatul<br/> <input type="button" value="adauga"> <%} else { %> 
-							 <font color="red">Produsul nu este disponbil!</font> <%}%> </td>
-					
-					<td><input type="button" value="adauga"/></td>		 
-							 
-				</tr>
-				<tr>
-					<td colspan="5" style="color:blue"><i>${produse.getDescriereProdus()}</i></td>
-				</tr>
-			</c:forEach> --%>
+
 		</tbody>
 
-		
 	</table>
 </form>
 	<p></p>
