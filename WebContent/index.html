@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Restaurant</title>
+</head>
+<body>
+<nav>
+	<button class="baraOptiuni" onclick="location.href='/restaurant5/StartAplicatie'">Home</button>
+    <button class="baraOptiuni" onclick="location.href='/restaurant5/adaugaProdusNou.jsp'">Administrator</button>
+    <button class="baraOptiuni" onclick="location.href='/restaurant5/adaugaProdusNou.jsp'">Ospatar</button>
+    <button class="baraOptiuni" onclick="location.href='/restaurant5/AfiseazaMeniu'">Client</button>
+    <button class="baraOptiuni" onclick="location.href='/restaurant5/AfiseazaMeniu'">Meniu</button>
+    <button class="baraOptiuni" onclick="location.href='/restaurant5/comandaCurenta'">Comanda curenta</button>
+</nav>
+
+
+
+    <p>Bine ati venit pe pagina de pornire a aplicatiei de management a Restaurantului SDA-7!</p>
+    <br>
+    <p>Configurarea este permisa numai pentru personalul autorizat!</p>
+    <br>
+    
+    <table>
+	    <tr>
+	    	<td style="color:red"><b><i>VIZUALIZARE <br> MENIU</i></b></td>
+	    	<td align="center"><a href="/restaurant5/AfiseazaMeniu">
+		<img border="3" alt="Vizualizare Meniu" src="imagini/meniu.jpg" width="240" height="160">
+			<caption>AFISEAZA MENIU</caption>
+		</a></td>
+	    </tr>
+    </table>
+
+    <br>
+    <p>Pentru conectarea ca administrator (configurare aplicatie):
+        <input type="button" onclick="location.href='/restaurant5/adaugaProdusNou.jsp'" value="Administrator"></p>
+    <br>
+    <br>
+    <p>Pentru pornire ca utilizator curent (CLIENT):
+        <input type="button" onclick="location.href='/restaurant5/AfiseazaMeniu'" value="Client"></p>
+    <br>
+    <br>
+
+
+
+
+
+
+</body>
+</html>
