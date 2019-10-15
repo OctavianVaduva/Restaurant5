@@ -55,13 +55,14 @@ public class UpdateCos extends HttpServlet {
 		request.getSession().setAttribute("cos", cos);
 		Iterator it = cos.keySet().iterator();
 		int nrObiecteCos = 0;
+		int nrProduse = cos.size();
+		request.getSession().setAttribute("nrProduse", nrProduse);
 		while(it.hasNext()) {
 			int val = Integer.parseInt((String)cos.get(it.next()));
 			nrObiecteCos += val;
 		}
 		request.getSession().setAttribute("nrObiecteCos", nrObiecteCos);
 		System.out.println("Nr obiecte cos = " + nrObiecteCos);
-		
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/meniu.jsp");
 		 rd.forward(request, response);

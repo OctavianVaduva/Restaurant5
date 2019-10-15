@@ -93,16 +93,16 @@
 
 	<h1 align="center"><b><i>RESTAURANTUL VEDETELOR</i></b></h1>
 	<h2 align="center"><b><i>Meniu</i></b></h2>
-	
+    Sunteti la masa: <b><%= request.getSession().getAttribute("masa") %></b> <br/> 	
+    Ospatarul de serviciu pentru aceasta masa este: <b><i><u><%= request.getSession().getAttribute("numeOspatar") %></u></i></b>
+    
 	<% List produse = (List)request.getSession().getAttribute("produse");%>
 	
 	<form action="UpdateCos">
 		<input type="hidden" id="productId" name="productId"/>
 
-	
-	Cos produse in cos: 
-
-	<%= request.getSession().getAttribute("nrObiecteCos") %>
+	Cosul contine  <b><%= request.getSession().getAttribute("nrProduse") %></b> tipuri de produse totalizand: 
+	<%= request.getSession().getAttribute("nrObiecteCos") %> produse
 
 	
 	<table class="meniu" style="width:100%" border="1">
