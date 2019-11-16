@@ -45,7 +45,7 @@ protected SessionFactory sessionFactory;
     protected void createProdus() {
         // code to save a book
         Produs produs = new Produs();
-        produs.setIdCategorie(1);
+//        produs.setIdCategorie(1);
         produs.setNumeProdus("Produs nou introdus");
         produs.setDescriereProdus("DESCRIERE Produs nou introdus");
         produs.setPretUnitar(25.00);
@@ -115,7 +115,7 @@ protected SessionFactory sessionFactory;
         // code to modify a book
     	Produs produs = new Produs();
         produs.setIdProdus(125);
-        produs.setIdCategorie(1);
+//        produs.setIdCategorie(1);
         produs.setNumeProdus("PRODUS DE Produs nou introdus");
         produs.setDescriereProdus("PRODUS DE DESCRIERE Produs nou introdus");
         produs.setPretUnitar(25.00);

@@ -43,12 +43,12 @@ public class AfiseazaMeniu extends HttpServlet {
 	        manager.setup();
 	        
 	        produse = manager.readAllProducts();
-	     
 	        manager.exit();
 	        request.getSession().setAttribute("produse", produse); // trebuie decis daca le salvam pe sesiune (pastrate mai mult timp) 
 //	        			sau temporar, cu accesarea bazei de date la fiecare nevoie de afisare
 //	        			Am optat pentru pastrare pe sesiune .getSession
-			
+	        request.getServletContext().setAttribute("produse", produse); // punem pe aplicatie
+	        
 		RequestDispatcher rd = request.getRequestDispatcher("/meniu.jsp");
 		 rd.forward(request, response);
 		

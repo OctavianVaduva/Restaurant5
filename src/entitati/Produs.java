@@ -1,11 +1,13 @@
 package entitati;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-//import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,8 +21,13 @@ public class Produs {
 	public Integer idProdus;
 	
 	
-	@Column(name = "id_categorie")
-	public Integer idCategorie;
+//	@Column(name = "id_categorie")
+//	public Integer idCategorie;
+	
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_categorie")
+	private Categorie categorie;
 	
 	@Column(name = "nume_produs")
     public String numeProdus;
@@ -37,16 +44,15 @@ public class Produs {
 	@Column(name="nivel_alerta")
 	public Integer nivelAlerta;
 	
-	
 //	@ManyToOne
 //	public Categorie categorie;
-    
 
-	public Produs(Integer idProdus, Integer idCategorie, String numeProdus, String descriereProdus, Double pretUnitar,
+	public Produs(Integer idProdus, String numeProdus, String descriereProdus, Double pretUnitar,
 			Integer stoc, Integer nivelAlerta) {
 		super();
 		this.idProdus = idProdus;
-		this.idCategorie = idCategorie;
+		
+//		this.idCategorie = idCategorie;
 		this.numeProdus = numeProdus;
 		this.descriereProdus = descriereProdus;
 		this.pretUnitar = pretUnitar;
@@ -65,12 +71,12 @@ public class Produs {
 		this.idProdus = idProdus;
 	}
 	
-	public Integer getIdCategorie() {
-		return idCategorie;
-	}
-	public void setIdCategorie(Integer idCategorie) {
-		this.idCategorie = idCategorie;
-	}
+//	public Integer getIdCategorie() {
+//		return idCategorie;
+//	}
+//	public void setIdCategorie(Integer idCategorie) {
+//		this.idCategorie = idCategorie;
+//	}
 	
 	public String getNumeProdus() {
 		return numeProdus;
@@ -106,5 +112,15 @@ public class Produs {
 	public void setNivelAlerta(Integer nivelAlerta) {
 		this.nivelAlerta = nivelAlerta;
 	}
+
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+	
+
 
 }

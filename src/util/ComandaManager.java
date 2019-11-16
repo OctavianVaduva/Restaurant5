@@ -1,5 +1,9 @@
 package util;
 
+import java.util.List;
+
+//import javax.persistence.Query;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -17,7 +21,7 @@ public class ComandaManager {
 	
 protected SessionFactory sessionFactory;
 	
-	protected void setup() {
+	public void setup() {
         // code to load Hibernate Session factory
     	final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
     	        .configure() // configures settings from hibernate.cfg.xml
@@ -29,7 +33,7 @@ protected SessionFactory sessionFactory;
     	}
     }
 	 
-    protected void exit() {
+    public void exit() {
         // code to close Hibernate Session factory
     	sessionFactory.close();
     }	
@@ -40,36 +44,54 @@ protected SessionFactory sessionFactory;
 //        comanda.setIdComanda(idComanda);;
         comanda.setNrMasa(2);
         comanda.setNumeOspatar("Vasilica Viorica");
-        comanda.setDataComanda(new java.util.Date());
+        comanda.setDataCreare(new java.util.Date());
         comanda.setPretTotalComanda(125.25);
-        comanda.setIncasat(125.25);
-        comanda.setDataIncasare(new java.util.Date());
-        comanda.setContinutComanda("125;3;126;2");
+//        comanda.setIncasat(125.25);
+//        comanda.setDataIncasare(new java.util.Date());
+        comanda.setContinutComanda("120:3;119:2");
         
         Session session = sessionFactory.openSession();
         session.beginTransaction();
      
-        session.save(comanda);
+        String ID = "" + session.save(comanda);
+        System.out.println("ID comanda = " + ID);
      
         session.getTransaction().commit();
         session.close();
     }	
 	
-    protected void readComanda(Integer idComanda) {
+    public Comanda readComanda(Integer idComanda) {
         // code to get a book
         Session session = sessionFactory.openSession();
         
 //        Integer idProdus = 20;
         Comanda comanda = session.get(Comanda.class, idComanda);
      
-        
         System.out.println("ID Comanda: " + comanda.getIdComanda());
         System.out.println("	Masa nr: " + comanda.getNrMasa());
         System.out.println("	Ospatar: " + comanda.getNumeOspatar());
         System.out.println("	Continut comanda: " + comanda.getContinutComanda());
      
         session.close();
+        return comanda;
     }
+    
+    public List readComendsForOspatar(String numeOspatar) {
+        // code to get a book
+        Session session = sessionFactory.openSession();
+        List comenzi = null;
+        
+        try {
+        	Query query = session.createQuery("from Comanda where numeOspatar='"+numeOspatar +"'");
+        	comenzi =  query.list();
+        	System.out.println("Numar comenzi pentru ospatar: " + numeOspatar + " = " + comenzi.size());
+        } finally {
+        	session.close();
+        }
+        return comenzi;
+    }
+    
+    
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -77,7 +99,8 @@ protected SessionFactory sessionFactory;
         manager.setup();
         
 //        manager.createComanda();
-        manager.readComanda(1);
+        manager.readComendsForOspatar("Valentina");
+//        manager.readComanda(1);;
 //        manager.deleteComanda(135);
 //        manager.updateComanda();
      

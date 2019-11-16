@@ -32,7 +32,8 @@ public class StartAplicatie extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String masa = (String) request.getSession().getAttribute("masa"); //obtinem numele atributului 
 		String numeOspatar = (String) request.getSession().getAttribute("numeOspatar");
-		if((masa == null) || (numeOspatar == null)) {
+		if((masa == null) || (numeOspatar == null) || ("".equals(masa)) || ("").equals(numeOspatar)) {
+			
 			RequestDispatcher rd = request.getRequestDispatcher("/configurare.jsp");
 			 rd.forward(request, response);
 		} else {

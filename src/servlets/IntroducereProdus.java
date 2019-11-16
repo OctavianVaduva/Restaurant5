@@ -16,7 +16,6 @@ import util.HibernateUtil;
 @WebServlet("/IntroducereProdus")
 public class IntroducereProdus extends HttpServlet{
 
-	
 	/**
 	 * 
 	 */
@@ -27,7 +26,7 @@ public class IntroducereProdus extends HttpServlet{
 	}
 	
 	@Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException,IOException{
 
         Integer idCategorie = Integer.parseInt(request.getParameter("idCategorie")); 
@@ -40,7 +39,7 @@ public class IntroducereProdus extends HttpServlet{
 		SessionFactory factory = HibernateUtil.getSessionfactory();
 		Session session = factory.openSession();
 		    Produs produs = new Produs();
-		        produs.setIdCategorie(idCategorie);
+//		        produs.setIdCategorie(idCategorie);
 		        produs.setNumeProdus(numeProdus);
 		        produs.setDescriereProdus(descriereProdus);
 		        produs.setPretUnitar(pretUnitar);
@@ -54,14 +53,11 @@ public class IntroducereProdus extends HttpServlet{
 		        session.getTransaction().commit();
 		        session.close();
 		        
-		        response.sendRedirect("/restaurant/adaugaProdusNou.jsp");
-        
-      // Creating a RequestDispatcher object to dispatch the request to another resourcee
-      // Creem un obiect rd de tip RequestDispatcher
-//      RequestDispatcher rd = request.getRequestDispatcher("/restaurant/adaugaProdusNou.jsp"); // public interface RequestDispatcher
-//
-//      rd.forward(request, response); // transmitem raspunsul care va genera deschiderea paginii home.jsp
-
+		        response.sendRedirect("/adaugaProdusNou.jsp");
     }
-
+	
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException,IOException{
+    	doGet(request, response);
+    }
 }

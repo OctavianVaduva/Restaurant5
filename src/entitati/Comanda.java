@@ -24,9 +24,13 @@ public class Comanda {
 	@Column(name = "nume_ospatar")
 	public String numeOspatar;
 	
-	@Column(name = "data_comanda")
-	public Date dataComanda;
+	@Column(name = "data_creare")
+	public Date dataCreare;
 	
+	@Column(name = "data_livrare")
+	public Date dataLivrare;
+	
+
 	@Column(name = "pret_total_comanda")
 	public Double pretTotalComanda;
 	
@@ -39,15 +43,13 @@ public class Comanda {
 	@Column(name = "continut_comanda")
 	public String continutComanda;
 
-	public Comanda(Integer nrMasa, String numeOspatar, Date dataComanda, Double pretTotalComanda, Double incasat,
-			Date dataIncasare, String continutComanda) {
+	public Comanda(Integer nrMasa, String numeOspatar, Date dataCreare, Double pretTotalComanda, 
+			String continutComanda) {
 		super();
 		this.nrMasa = nrMasa;
 		this.numeOspatar = numeOspatar;
-		this.dataComanda = dataComanda;
+		this.dataCreare = dataCreare;
 		this.pretTotalComanda = pretTotalComanda;
-		this.incasat = incasat;
-		this.dataIncasare = dataIncasare;
 		this.continutComanda = continutComanda;
 	}
 
@@ -78,14 +80,6 @@ public class Comanda {
 
 	public void setNumeOspatar(String numeOspatar) {
 		this.numeOspatar = numeOspatar;
-	}
-
-	public Date getDataComanda() {
-		return dataComanda;
-	}
-
-	public void setDataComanda(Date dataComanda) {
-		this.dataComanda = dataComanda;
 	}
 
 	public Double getPretTotalComanda() {
@@ -120,6 +114,21 @@ public class Comanda {
 		this.continutComanda = continutComanda;
 	}
 
+	public Date getDataCreare() {
+		return dataCreare;
+	}
+
+	public void setDataCreare(Date dataCreare) {
+		this.dataCreare = dataCreare;
+	}
+
+	public Date getDataLivrare() {
+		return dataLivrare;
+	}
+
+	public void setDataLivrare(Date dataLivrare) {
+		this.dataLivrare = dataLivrare;
+	}
 
 	
 

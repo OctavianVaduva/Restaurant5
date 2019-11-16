@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.List" %>
 <%@ page import="entitati.Produs" %>
+<%@ page import="entitati.Categorie" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>  
     
 <!DOCTYPE html>
@@ -26,10 +27,9 @@
 	
 	<style>
 	
-	  /*sursa< https://www.geeksforgeeks.org/how-to-create-table-with-100-width-with-vertical-scroll-inside-table-body-in-html/  */
+	/* sursa< https://www.geeksforgeeks.org/how-to-create-table-with-100-width-with-vertical-scroll-inside-table-body-in-html/  */
 	table.meniu { 
 	    width: 100%; 
-	            /* border-collapse: collapse; */ 
 	    border-spacing: 0; 
 	    border: 1px solid #dddddd; 
 	    } 
@@ -46,28 +46,19 @@
 	          
 	        table.meniu tbody { 
 	            /* Set the height of table body */ 
-	            height: 400px;  
+	          	height: 350px; 
 	            /* Set vertical scroll */ 
 	            overflow-y: auto; 
 	            /* Hide the horizontal scroll */ 
-	            overflow-x: hidden;  
+	            overflow-x: auto;  
 	        } 
 	          
 	        tbody {  
-	            border-top: 2px solid black; 
+	            border-top: 1px solid black; 
 	        } 
 	        tbody td, thead th { 
-	            width : 262px; 
 	            border-right: 1px solid #dddddd; 
 	        } 
-	/*         td { 
-	            text-align:center; 
-	        }  */  
-	  
-	/* tbody, td, thead, th {
-	  border: 1px solid #dddddd;
-	  padding: 2px;
-	} */
 	
 	tr:nth-child(odd) {
 	  background-color: #88ff88;
@@ -84,11 +75,13 @@
 <nav>
 	<button class="baraOptiuni" onclick="location.href='/restaurant5/index.html'">Home</button>
     <button class="baraOptiuni" onclick="location.href='/restaurant5/adaugaProdusNou.jsp'">Administrator</button>
-    <button class="baraOptiuni" onclick="location.href='/restaurant5/adaugaProdusNou.jsp'">Ospatar</button>
+    <button class="baraOptiuni" onclick="location.href='/restaurant5/admin/comenziospatar.jsp'">Ospatar</button>
     <button class="baraOptiuni" onclick="location.href='/restaurant5/AfiseazaMeniu'">Client</button>
     <button class="baraOptiuni" onclick="location.href='/restaurant5/AfiseazaMeniu'">Meniu</button>
-    <button class="baraOptiuni" onclick="location.href='/restaurant5/comandaCurenta'">Comanda curenta</button>
+    <button class="baraOptiuni" onclick="location.href='/restaurant5/AfisareCos'">Comanda curenta</button>
 </nav>
+
+<%@ include file = "header.jsp" %>
 
 
 	<h1 align="center"><b><i>RESTAURANTUL VEDETELOR</i></b></h1>
@@ -96,24 +89,26 @@
     Sunteti la masa: <b><%= request.getSession().getAttribute("masa") %></b> <br/> 	
     Ospatarul de serviciu pentru aceasta masa este: <b><i><u><%= request.getSession().getAttribute("numeOspatar") %></u></i></b>
     
-	<% List produse = (List)request.getSession().getAttribute("produse");%>
+	<% 
+	List produse = (List)request.getSession().getAttribute("produse");
+	%>
 	
-	<form action="UpdateCos">
+	<form action="UpdateCos" method="post">
 		<input type="hidden" id="productId" name="productId"/>
 
 	Cosul contine  <b><%= request.getSession().getAttribute("nrProduse") %></b> tipuri de produse totalizand: 
 	<%= request.getSession().getAttribute("nrObiecteCos") %> produse
 
 	
-	<table class="meniu" style="width:100%" border="1">
-		<thead>
+	<table class="meniu" border="1">
+		<thead style="width:98.2%" >
 			<tr> <!-- Scrierea capului de tabel -->
-				<th rowspan="2">Categorie</th>
-				<th style="color:red" align="left">Produs</th>
-				<th>Pret</th>
-				<th>Imagine</th> 
-				<th>Cantitate</th>
-				<th>Adauga</th>
+				<th style="width: 5%;" rowspan="2">Categ.</th>
+				<th style="width: 65%;" style="color:red" align="left">Produs</th>
+				<th style="width: 5%;">Pret</th>
+				<th style="width: 10%;">Imagine</th> 
+				<th style="width: 5%;">Cantitate</th>
+				<th style="width: 10%;">Adauga</th>
 			</tr>  
 			<tr>
 				<th align="left" colspan="5" style="color:blue" ><i>Descriere produs</i></th>
@@ -124,15 +119,16 @@
 		<%
 		for(int i = 0; i < produse.size(); ++i) {
 			Produs produs = (Produs) produse.get(i);  // facem cast la Produs, pentr ca aducem obiecte din entitate
+			Categorie categorie = produs.getCategorie();
 		%>
 		<tr align="center">
-					<td rowspan="2"><%=produs.getIdCategorie()%></td>
-					<td style="color:red" align="left"><b><i><%=produs.getIdProdus()%></i> - <%=produs.getNumeProdus()%></b></td>
-					<td><%=produs.getPretUnitar()%></td>
-					<td><img border="3" src="imagini/meniu.jpg" width="120" height="80"></td>
-					<td><input type="number" name="cant<%=produs.getIdProdus()%>" id="cant<%=produs.getIdProdus()%>" min="1" max="<%=produs.getStoc()%>"></td>
-
- 					<td><% if(produs.getStoc() > produs.getNivelAlerta()) {%>
+<%-- 					<td style="width: 5%;" rowspan="2"><%=produs.getIdCategorie()%></td> --%>
+					<td style="width: 5%;" rowspan="2"><%=categorie.getNumeCategorieProdus()%></td>
+					<td style="width: 65%;" style="color:red" align="left"><b><i><%=produs.getIdProdus()%></i> - <%=produs.getNumeProdus()%></b></td>
+					<td style="width: 5%;"><%=produs.getPretUnitar()%></td>
+					<td style="width: 10%;"><img border="1" src="imagini/meniu.jpg" width=90% height=8%></td>
+					<td style="width: 5%;"><input type="number" name="cant<%=produs.getIdProdus()%>" id="cant<%=produs.getIdProdus()%>" min="1" max="<%=produs.getStoc()%>"></td>
+ 					<td style="width: 10%;"><% if(produs.getStoc() > produs.getNivelAlerta()) {%>
 							<button onclick='document.getElementById("productId").value="<%=produs.getIdProdus()%>"; form.submit();'>Adauga</button>
 							<%} else if(produs.getStoc() > 0) {%>
 							 <font color="red"><b><i>Intreaba osparatul</i></b></font> <br/> <button onclick='document.getElementById("productId").value="<%=produs.getIdProdus()%>"; form.submit();'>Adauga</button><%} else { %> 
@@ -142,7 +138,6 @@
 						<tr>
 					<td colspan="5" style="color:blue"><i><%=produs.getDescriereProdus()%></i></td>
 				</tr>		
-				
 				
 				<%} %>
 
