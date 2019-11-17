@@ -92,6 +92,21 @@ protected SessionFactory sessionFactory;
         return comenzi;
     }
     
+    public List readOpenCommandsForOspatar(String numeOspatar) {
+        // code to get a book
+        Session session = sessionFactory.openSession();
+        List comenzi = null;
+        
+        try {
+        	Query query = session.createQuery("from Comanda where numeOspatar='"+numeOspatar +"' and dataIncasare=null"  );
+        	comenzi =  query.list();
+        	System.out.println("Numar comenzi deschise pentru ospatarul: " + numeOspatar + " = " + comenzi.size());
+        } finally {
+        	session.close();
+        }
+        return comenzi;
+    }
+    
     public void update(Comanda com) {
     	Session session = sessionFactory.openSession();
     	session.beginTransaction();

@@ -78,6 +78,16 @@ protected SessionFactory sessionFactory;
         session.close();
     }
     
+    public Produs getProdusById(Integer idProdus) {
+        // code to get a book
+        Session session = sessionFactory.openSession();
+        
+//        Integer idProdus = 20;
+        Produs produs = session.get(Produs.class, idProdus);
+     
+        session.close();
+        return produs;
+    }
     
     public List readAllProducts() {
     	List<Produs> produse = null;
@@ -131,6 +141,16 @@ protected SessionFactory sessionFactory;
         session.close();
     }
  
+    public void updateStoc(Produs p) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+     
+        session.update(p);
+     
+        session.getTransaction().commit();
+        session.close();
+    }
+    
     protected void deleteProdus(Integer idProdus) {
         // code to remove a book
     	Produs produs = new Produs();

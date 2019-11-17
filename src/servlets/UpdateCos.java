@@ -78,7 +78,7 @@ public class UpdateCos extends HttpServlet {
 		
 		RequestDispatcher rd;
 		
-		if((action != null) && (action.equals("remove"))) {
+		if((action != null) && (action.equals("remove")) && (nrObiecteCos > 0)) {
 			rd = request.getRequestDispatcher("/AfisareCos");;
 		}else {
 			rd = request.getRequestDispatcher("/meniu.jsp");

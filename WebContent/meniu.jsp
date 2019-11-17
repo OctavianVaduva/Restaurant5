@@ -96,7 +96,7 @@
 	
 	<form action="UpdateCos" method="post">
 		<input type="hidden" id="productId" name="productId"/>
-
+	
 	Cosul contine  <b><%= request.getSession().getAttribute("nrProduse") %></b> tipuri de produse totalizand: 
 	<%= request.getSession().getAttribute("nrObiecteCos") %> produse
 
@@ -132,8 +132,8 @@
  					<td style="width: 10%;"><% if(produs.getStoc() > produs.getNivelAlerta()) {%>
 							<button onclick='this.disabled=true; document.getElementById("productId").value="<%=produs.getIdProdus()%>"; form.submit();'>Adauga</button>
 							<%} else if(produs.getStoc() > 0) {%>
-							 <font color="red"><b><i>Intreaba osparatul</i></b></font> <br/> <button onclick='document.getElementById("productId").value="<%=produs.getIdProdus()%>"; form.submit();'>Adauga</button><%} else { %> 
-							 <font color="red">Produsul nu este disponbil!</font> <%}%>
+							 <font color="red"><b><i>Intreaba osparatul</i></b></font> <br/> <button onclick='document.getElementById("productId").value="<%=produs.getIdProdus()%>"; form.submit();'>Adauga</button>
+							 <%} else { %> <font color="red">Produsul nu este disponbil!</font> <%}%>
 					</td>
 				</tr>
 						<tr>
