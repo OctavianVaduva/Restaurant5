@@ -11,6 +11,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import entitati.Comanda;
+import entitati.CommandItem;
 
 public class ComandaManager {
 
@@ -91,7 +92,14 @@ protected SessionFactory sessionFactory;
         return comenzi;
     }
     
-    
+    public void update(Comanda com) {
+    	Session session = sessionFactory.openSession();
+    	session.beginTransaction();
+    	session.update(com);
+    	
+    	session.getTransaction().commit();
+    	session.close();
+    }
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

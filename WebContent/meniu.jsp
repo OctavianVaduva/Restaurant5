@@ -90,7 +90,8 @@
     Ospatarul de serviciu pentru aceasta masa este: <b><i><u><%= request.getSession().getAttribute("numeOspatar") %></u></i></b>
     
 	<% 
-	List produse = (List)request.getSession().getAttribute("produse");
+	/* List produse = (List)request.getSession().getAttribute("produse"); // incarcare de pe sesiune*/
+	List produse = (List)request.getServletContext().getAttribute("produse"); // incarcare de pe apliatie nu pe sesiune
 	%>
 	
 	<form action="UpdateCos" method="post">
@@ -129,7 +130,7 @@
 					<td style="width: 10%;"><img border="1" src="imagini/meniu.jpg" width=90% height=8%></td>
 					<td style="width: 5%;"><input type="number" name="cant<%=produs.getIdProdus()%>" id="cant<%=produs.getIdProdus()%>" min="1" max="<%=produs.getStoc()%>"></td>
  					<td style="width: 10%;"><% if(produs.getStoc() > produs.getNivelAlerta()) {%>
-							<button onclick='document.getElementById("productId").value="<%=produs.getIdProdus()%>"; form.submit();'>Adauga</button>
+							<button onclick='this.disabled=true; document.getElementById("productId").value="<%=produs.getIdProdus()%>"; form.submit();'>Adauga</button>
 							<%} else if(produs.getStoc() > 0) {%>
 							 <font color="red"><b><i>Intreaba osparatul</i></b></font> <br/> <button onclick='document.getElementById("productId").value="<%=produs.getIdProdus()%>"; form.submit();'>Adauga</button><%} else { %> 
 							 <font color="red">Produsul nu este disponbil!</font> <%}%>
