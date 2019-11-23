@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.hibernate.SessionFactory;
 
 import entitati.Produs;
+import util.ProdusDAO;
+import util.ProdusDAOFactory;
+import util.ProdusJDBCDAO;
 import util.ProdusManager;
 
 
@@ -39,7 +42,9 @@ public class AfiseazaMeniu extends HttpServlet {
 
 			List<Produs> produse = null;				
 			
-			ProdusManager manager = new ProdusManager();
+//			ProdusDAO manager = new ProdusManager();
+			ProdusDAO manager = ProdusDAOFactory.getInstance().getProdusDAO(); // nu stim ce implementare (JDBC sau Hibernate) folosesc
+//			ProdusDAO manager = new ProdusJDBCDAO(); // TODO de veriificat de ce nu functioneaza
 	        manager.setup();
 	        
 	        produse = manager.readAllProducts();

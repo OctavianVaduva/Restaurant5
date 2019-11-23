@@ -1,4 +1,4 @@
-package servlets;
+package servlets.admin;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -10,10 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import entitati.Categorie;
 import entitati.Produs;
+import util.CategorieManager;
 import util.HibernateUtil;
 
-@WebServlet("/IntroducereProdus")
+@WebServlet("/admin/IntroducereProdus")
 public class IntroducereProdus extends HttpServlet{
 
 	/**
@@ -29,7 +31,11 @@ public class IntroducereProdus extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException,IOException{
 
-        Integer idCategorie = Integer.parseInt(request.getParameter("idCategorie")); 
+		Integer idCategorie = Integer.parseInt(request.getParameter("idCategorie"));
+		CategorieManager catManager = new CategorieManager();
+		catManager.setup();
+		Categorie categorie = catManager.readCategorie(idCategorie);
+		
         String numeProdus = request.getParameter("numeProdus"); 
         String descriereProdus = request.getParameter("descriereProdus"); 
         Double pretUnitar = Double.valueOf(request.getParameter("pretUnitar")); 
@@ -40,6 +46,7 @@ public class IntroducereProdus extends HttpServlet{
 		Session session = factory.openSession();
 		    Produs produs = new Produs();
 //		        produs.setIdCategorie(idCategorie);
+		    	produs.setCategorie(categorie);
 		        produs.setNumeProdus(numeProdus);
 		        produs.setDescriereProdus(descriereProdus);
 		        produs.setPretUnitar(pretUnitar);
@@ -53,7 +60,8 @@ public class IntroducereProdus extends HttpServlet{
 		        session.getTransaction().commit();
 		        session.close();
 		        
-		        response.sendRedirect("/adaugaProdusNou.jsp");
+		        response.sendRedirect("adaugaProdusNou.jsp");
+		        
     }
 	
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

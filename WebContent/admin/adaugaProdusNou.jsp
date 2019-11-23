@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.List" %>
+<%@ page import="entitati.Categorie" %>  
+    
+<% List categorii = (List) request.getServletContext().getAttribute("categorii");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,20 +12,17 @@
 </head>
 
 <body>
-<nav>
-	<button class="baraOptiuni" onclick="location.href='/restaurant5/index.html'">Home</button>
-    <button class="baraOptiuni" onclick="location.href='/restaurant5/adaugaProdusNou.jsp'">Administrator</button>
-    <button class="baraOptiuni" onclick="location.href='/restaurant5/admin/comenziospatar.jsp'">Ospatar</button>
-    <button class="baraOptiuni" onclick="location.href='/restaurant5/AfiseazaMeniu'">Client</button>
-    <button class="baraOptiuni" onclick="location.href='/restaurant5/AfiseazaMeniu'">Meniu</button>
-    <button class="baraOptiuni" onclick="location.href='/restaurant5/AfisareCos'">Comanda curenta</button>
-</nav>
+<%@ include file = "../header.jsp" %>
+
+<%
+if(categorii != null) {System.out.println("Categorii in jsp: " + categorii.size() + " obiecte");
+ %>
 
 	<h1 align="center"><b><i>RESTAURANTUL VEDETELOR</i></b></h1>
 	<h2 align="center"><b><i>Adauga produs nou</i></b></h2>
 	
 
-	<form action="IntroducereProdus" method="get">
+	<form action="IntroducereProdus" method="post">
 	<div align="center">
 		<table>
 			<tr>
@@ -30,18 +31,13 @@
 				</th>
 				<td>
 					<select id="Denumire categorie" name="idCategorie" required>
-						<option value="1">Gustari</option>
-						<option value="2">Ciorbe</option>
-						<option value="3">Salate speciale</option>
-						<option value="4">Peste</option>
-						<option value="5">Gratar</option>
-						<option value="6">Preparate calde</option>
-						<option value="7">Salate</option>
-						<option value="8">Desert</option>
-						<option value="9">Racoritoare</option>
-						<option value="10">Cafea/Ceai</option>
-						<option value="11">Bere</option>
-						<option value="12">Diverse bucatarie</option>
+					
+					<%
+					for(int j=0; j<categorii.size(); j++) {
+						Categorie categorie = (Categorie) categorii.get(j);
+					%>
+						<option value="<%=categorie.getIdCategorieProdus() %>"><%=categorie.getNumeCategorieProdus()%></option>
+						<% } %>
 					</select>
 				</td>
 			</tr>
@@ -68,7 +64,7 @@
 					<label>Pret unitar</label>
 				</th>
 				<td>
-					<input type="number" step="0.01" id="pretUnitar" name="pretUnitar" required>
+					<input type="number" step="0.01" id="pretUnitar" name="pretUnitar" min="0.00" required>
 				</td>
 			</tr>
 			<tr>
@@ -76,7 +72,7 @@
 					<label>Nivel existent</label>
 				</th>
 				<td>
-					<input type="number" id="nivelExistent" name="nivelExistent" required>
+					<input type="number" id="nivelExistent" name="nivelExistent" min="0" required>
 				</td>
 			</tr>
 			<tr>
@@ -84,7 +80,7 @@
 					<label>Nivel alerta</label>
 				</th>
 				<td>
-					<input type="number" id="nivelAlerta" name="nivelAlerta" required>
+					<input type="number" id="nivelAlerta" name="nivelAlerta" min="0" required>
 				</td>
 			</tr>	
 			<tr align="center"> <td colspan="2">---------------------------------------------</td>
@@ -101,6 +97,8 @@
 	</div>
 	
 	</form>
-
+<%} else {%>
+Nu am primit categoriile!
+<% } %>
 </body>
 </html>

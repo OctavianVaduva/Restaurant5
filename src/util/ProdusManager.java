@@ -17,7 +17,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import entitati.Categorie;
 import entitati.Produs;
 
-public class ProdusManager {
+public class ProdusManager implements ProdusDAO {
 
 	public ProdusManager() {
 		// TODO Auto-generated constructor stub
@@ -25,6 +25,7 @@ public class ProdusManager {
 
 protected SessionFactory sessionFactory;
 	
+	@Override
 	public void setup() {
         // code to load Hibernate Session factory
     	final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
@@ -37,7 +38,8 @@ protected SessionFactory sessionFactory;
     	}
     }
  
-    public void exit() {
+    @Override
+	public void exit() {
         // code to close Hibernate Session factory
     	sessionFactory.close();
     }
@@ -78,7 +80,8 @@ protected SessionFactory sessionFactory;
         session.close();
     }
     
-    public Produs getProdusById(Integer idProdus) {
+    @Override
+	public Produs getProdusById(Integer idProdus) {
         // code to get a book
         Session session = sessionFactory.openSession();
         
@@ -89,7 +92,8 @@ protected SessionFactory sessionFactory;
         return produs;
     }
     
-    public List readAllProducts() {
+    @Override
+	public List readAllProducts() {
     	List<Produs> produse = null;
     	
 //		SessionFactory factory = HibernateUtil.getSessionfactory(); // suntem puternic dependeti de implementare
@@ -141,7 +145,8 @@ protected SessionFactory sessionFactory;
         session.close();
     }
  
-    public void updateStoc(Produs p) {
+    @Override
+	public void updateStoc(Produs p) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
      
@@ -167,7 +172,7 @@ protected SessionFactory sessionFactory;
  
     public static void main(String[] args) {
         // code to run the program
-        ProdusManager manager = new ProdusManager();
+        ProdusDAO manager = new ProdusManager();
         manager.setup();
         
 //        manager.createProdus();

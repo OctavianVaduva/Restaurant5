@@ -121,6 +121,11 @@
 		for(int i = 0; i < produse.size(); ++i) {
 			Produs produs = (Produs) produse.get(i);  // facem cast la Produs, pentr ca aducem obiecte din entitate
 			Categorie categorie = produs.getCategorie();
+			if(categorie == null) {
+				System.out.println("Id categorie = null");
+			}else {
+			System.out.println("Id categorie = " + categorie.getIdCategorieProdus());
+			}
 		%>
 		<tr align="center">
 <%-- 					<td style="width: 5%;" rowspan="2"><%=produs.getIdCategorie()%></td> --%>
