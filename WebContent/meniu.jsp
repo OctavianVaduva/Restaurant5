@@ -134,12 +134,13 @@
 					<td style="width: 5%;"><%=produs.getPretUnitar()%></td>
 					<td style="width: 10%;"><img border="1" src="imagini/meniu.jpg" width=90% height=8%></td>
 					<td style="width: 5%;"><input type="number" name="cant<%=produs.getIdProdus()%>" id="cant<%=produs.getIdProdus()%>" min="1" max="<%=produs.getStoc()%>"></td>
- 					<td style="width: 10%;"><% if(produs.getStoc() > produs.getNivelAlerta()) {%>
+  					<td style="width: 10%;"><% if(produs.getStoc() > produs.getNivelAlerta()) {%>
 							<button onclick='this.disabled=true; document.getElementById("productId").value="<%=produs.getIdProdus()%>"; form.submit();'>Adauga</button>
 							<%} else if(produs.getStoc() > 0) {%>
-							 <font color="red"><b><i>Intreaba osparatul</i></b></font> <br/> <button onclick='document.getElementById("productId").value="<%=produs.getIdProdus()%>"; form.submit();'>Adauga</button>
+							 <font color="red"><b><i>Intreaba osparatul</i></b></font> <br/> <button onclick='this.disabled=true; document.getElementById("productId").value="<%=produs.getIdProdus()%>"; form.submit();'>Adauga</button>
 							 <%} else { %> <font color="red">Produsul nu este disponbil!</font> <%}%>
 					</td>
+					<%-- <td style="width: 10%;"><button onclick='this.disabled=true; document.getElementById("productId").value="<%=produs.getIdProdus()%>"; form.submit();'>Adauga</button></td> --%>
 				</tr>
 						<tr>
 					<td colspan="5" style="color:blue"><i><%=produs.getDescriereProdus()%></i></td>

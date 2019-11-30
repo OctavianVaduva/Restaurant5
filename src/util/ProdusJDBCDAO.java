@@ -73,6 +73,7 @@ public class ProdusJDBCDAO implements ProdusDAO {
 		produs.setNumeProdus(rs.getString(3));
 		produs.setDescriereProdus(rs.getString(4));
 		produs.setPretUnitar(rs.getDouble(5));
+		produs.setStoc(rs.getInt(6));
 		produs.setNivelAlerta(rs.getInt(7));
 		return produs;
 	}
@@ -87,6 +88,7 @@ public class ProdusJDBCDAO implements ProdusDAO {
 				categorie.setIdCategorieProdus(rs.getInt(1));
 				System.out.println("Id categorie = " + categorie.getIdCategorieProdus());
 				categorie.setNumeCategorieProdus(rs.getString(2));
+				return categorie;
 			}
 		}catch (SQLException e) {
 			e.printStackTrace();

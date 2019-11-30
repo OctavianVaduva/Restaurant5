@@ -18,14 +18,14 @@ public class ProdusDAOFactory {
 	
 	public ProdusDAO getProdusDAO() {
 		
-		String implementation = "JDBC";
-		//String implementation = "Hibernate";
+//		String implementation = "JDBC"; // setam manual aceasta optiune sau urmatoarea, pentru a selecta tehnologia de accesare a bazei de date si de prelucrare a datelor.
+		String implementation = "Hibernate";
 		ProdusDAO result = null;
 		if(implementation.equals("JDBC")) {
 			result = new ProdusJDBCDAO();
 		}
 		if(implementation.equals("Hibernate")) {
-			result = new ProdusJDBCDAO();
+			result = new ProdusManager();
 		}
 		return result;
 		

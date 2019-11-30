@@ -44,7 +44,7 @@ public class AfiseazaMeniu extends HttpServlet {
 			
 //			ProdusDAO manager = new ProdusManager();
 			ProdusDAO manager = ProdusDAOFactory.getInstance().getProdusDAO(); // nu stim ce implementare (JDBC sau Hibernate) folosesc
-//			ProdusDAO manager = new ProdusJDBCDAO(); // TODO de veriificat de ce nu functioneaza
+//			ProdusDAO manager = new ProdusJDBCDAO(); // TODO de verificat de ce nu functioneaza
 	        manager.setup();
 	        
 	        produse = manager.readAllProducts();
