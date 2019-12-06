@@ -72,15 +72,6 @@
 
 <body>
 
-<nav>
-	<button class="baraOptiuni" onclick="location.href='/restaurant5/index.html'">Home</button>
-    <button class="baraOptiuni" onclick="location.href='/restaurant5/adaugaProdusNou.jsp'">Administrator</button>
-    <button class="baraOptiuni" onclick="location.href='/restaurant5/admin/comenziospatar.jsp'">Ospatar</button>
-    <button class="baraOptiuni" onclick="location.href='/restaurant5/AfiseazaMeniu'">Client</button>
-    <button class="baraOptiuni" onclick="location.href='/restaurant5/AfiseazaMeniu'">Meniu</button>
-    <button class="baraOptiuni" onclick="location.href='/restaurant5/AfisareCos'">Comanda curenta</button>
-</nav>
-
 <%@ include file = "header.jsp" %>
 
 

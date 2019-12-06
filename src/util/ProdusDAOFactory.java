@@ -18,8 +18,9 @@ public class ProdusDAOFactory {
 	
 	public ProdusDAO getProdusDAO() {
 		
-//		String implementation = "JDBC"; // setam manual aceasta optiune sau urmatoarea, pentru a selecta tehnologia de accesare a bazei de date si de prelucrare a datelor.
-		String implementation = "Hibernate";
+//		setam manual "String implementation" aceasta optiune sau urmatoarea, pentru a selecta tehnologia de accesare si de prelucrare a datelor din baza de date.
+		String implementation = "JDBC"; 
+//		String implementation = "Hibernate";
 		ProdusDAO result = null;
 		if(implementation.equals("JDBC")) {
 			result = new ProdusJDBCDAO();
